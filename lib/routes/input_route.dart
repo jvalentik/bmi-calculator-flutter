@@ -1,8 +1,13 @@
+import 'package:bmi_calculator/routes/result_route.dart';
+import 'package:bmi_calculator/utils/calculator.dart';
+import 'package:bmi_calculator/utils/constants.dart';
+import 'package:bmi_calculator/utils/screen_arguments.dart';
+import 'package:bmi_calculator/widgets/base_tile.dart';
+import 'package:bmi_calculator/widgets/bottom_action_button.dart';
+import 'package:bmi_calculator/widgets/round_icon_button.dart';
+import 'package:bmi_calculator/widgets/tile_content.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-import '../constants.dart';
-import '../widgets/widgets.dart';
 
 enum Gender {
   MALE,
@@ -10,6 +15,7 @@ enum Gender {
 }
 
 class InputRoute extends StatefulWidget {
+  static const routeName = '/';
   @override
   _InputRouteState createState() => _InputRouteState();
 }
@@ -198,25 +204,20 @@ class _InputRouteState extends State<InputRoute> {
               ],
             ),
           ),
-          GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(
-                context,
-                '/result',
-              );
-            },
-            child: Container(
-              alignment: Alignment.center,
-              child: Text(
-                'CALCULATE',
-                style: kLabelTextStyle,
-              ),
-              color: kBottomContainerColor,
-              margin: EdgeInsets.only(top: kBottomContainerMargin),
-              width: double.infinity,
-              height: kBottomContainerHeight,
-            ),
-          ),
+          BottomActionButton(
+              onTap: () {
+                Calculator calc = Calculator(height: _height, weight: _weight);
+                Navigator.pushNamed(
+                  context,
+                  ResultRoute.routeName,
+                  arguments: ScreenArguments(
+                    bmi: calc.calculateBMI(),
+                    result: calc.getResult(),
+                    interpretation: calc.getInterpretation(),
+                  ),
+                );
+              },
+              label: 'CALCULATE'),
         ],
       ),
     );

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'constants.dart';
 import 'routes/routes.dart';
+import 'utils/constants.dart';
 
 void main() => runApp(BMICalculator());
 

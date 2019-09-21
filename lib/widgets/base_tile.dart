@@ -1,6 +1,5 @@
+import 'package:bmi_calculator/utils/constants.dart';
 import 'package:flutter/material.dart';
-
-import '../constants.dart';
 
 class BaseTile extends StatelessWidget {
   final Color color;

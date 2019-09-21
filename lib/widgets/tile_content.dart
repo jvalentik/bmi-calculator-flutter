@@ -1,6 +1,5 @@
+import 'package:bmi_calculator/utils/constants.dart';
 import 'package:flutter/material.dart';
-
-import '../constants.dart';
 
 class TileContent extends StatelessWidget {
   final IconData data;
